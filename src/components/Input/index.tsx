@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ icone, ...rest }) => {
 
     return (
         <Container focado={focado}>
-            <FeatherIcones name={icone} size={30} color={focado?'#7159c1':'#959da5'} />
+            <FeatherIcones name={icone} size={25} color={focado?'#7159c1':'#959da5'} />
             <CaixaTexto 
             {...rest} 
             placeholderTextColor="#959da5"

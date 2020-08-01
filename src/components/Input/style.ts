@@ -8,7 +8,7 @@ export const Container = styled.View<ContainerProps>`
 
 background: #2f363d;
 border: 2px solid #2f363d;
-padding: 5px 0 10px 5px;
+padding: 5px;
 border-radius: 7px;
 display: flex;
 flex-direction:row;
