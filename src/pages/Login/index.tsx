@@ -8,12 +8,16 @@ import BotaoPrimario from '../../components/BotaoPrimario';
 import BotaoLink from '../../components/BotaoLink';
 import InfoVersao from '../../components/InfoVersao';
 
+import ServicoUsuario from '../../services/ServicoUsuario';
+
 import { Container, AreaForm, Rodape } from './style';
 
 const Login: React.FC = () => {
 
-    const TentarLogin = (): void => {
-        
+    const TentarLogin = async (): Promise<void> => {
+        const servico = new ServicoUsuario();
+        const usuario = await servico.LogarUsuario('ph', '69174');
+        console.log('user', usuario);
     }
 
     const AbrirTelaRecuperarSenha = (): void => {
