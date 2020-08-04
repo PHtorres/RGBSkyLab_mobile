@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
 
 import TituloTela from '../../components/TituloTela';
@@ -14,10 +14,18 @@ import { Container, AreaForm, Rodape } from './style';
 
 const Login: React.FC = () => {
 
+    const [usuario, setUsuario] = useState('');
+    const [senha, setSenha] = useState('');
+
     const TentarLogin = async (): Promise<void> => {
+        
         const servico = new ServicoUsuario();
-        const usuario = await servico.LogarUsuario('ph', '69174');
-        console.log('user', usuario);
+        const objUsuario = await servico.LogarUsuario(usuario, senha);
+        if (objUsuario.logado) {
+            Alert.alert('Deu certo, porra');
+        } else {
+            Alert.alert(objUsuario.listaErros[0]);
+        }
     }
 
     const AbrirTelaRecuperarSenha = (): void => {
@@ -29,8 +37,18 @@ const Login: React.FC = () => {
             <LogoRGBSkyLab />
             <AreaForm>
                 <TituloTela>Login</TituloTela>
-                <Input icone="user" placeholder="Usuário" />
-                <Input icone="lock" placeholder="Senha" secureTextEntry />
+                <Input
+                    icone="user"
+                    placeholder="Usuário"
+                    value={usuario}
+                    onChangeText={(texto) => setUsuario(texto)} />
+                <Input
+                    icone="lock"
+                    placeholder="Senha"
+                    secureTextEntry
+                    value={senha}
+                    onChangeText={(texto) => setSenha(texto)} />
+
                 <BotaoLink onPress={AbrirTelaRecuperarSenha}>Esqueci minha senha</BotaoLink>
                 <BotaoPrimario habilitado={true} onPress={TentarLogin}>Entrar</BotaoPrimario>
             </AreaForm>
