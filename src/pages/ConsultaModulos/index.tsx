@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
@@ -9,6 +10,8 @@ import ItemConsulta from './ItemConsulta';
 import { Container, AreaResultado, TituloResultado } from './style';
 
 const ConsultaModulos: React.FC = () => {
+
+    const navigation = useNavigation();
 
     const RealizarBusca = (): void => {
 
@@ -62,6 +65,10 @@ const ConsultaModulos: React.FC = () => {
             <TituloTela>Consulta módulos</TituloTela>
             <Input icone="search" placeholder="Digite o apelido do cliente" />
             <BotaoPrimario habilitado={true} onPress={RealizarBusca}>Buscar</BotaoPrimario>
+            <BotaoPrimario
+                habilitado={true}
+                onPress={() => navigation.goBack()}>Voltar para login
+            </BotaoPrimario>
             <AreaResultado>
                 <TituloResultado>Resultado:</TituloResultado>
                 <FlatList
