@@ -24,7 +24,7 @@ const Login: React.FC = () => {
         const servico = new ServicoUsuario();
         const objUsuario = await servico.LogarUsuario(usuario, senha);
         if (objUsuario.logado) {
-            Alert.alert('Deu certo, porra');
+            navigation.navigate('ConsultaModulos');
         } else {
             Alert.alert(objUsuario.listaErros[0]);
         }

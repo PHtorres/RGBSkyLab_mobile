@@ -2,6 +2,8 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import ServicoUsuario from '../../services/ServicoUsuario';
+
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
@@ -13,8 +15,10 @@ const ConsultaModulos: React.FC = () => {
 
     const navigation = useNavigation();
 
-    const RealizarBusca = (): void => {
-
+    const RealizarBusca = async (): Promise<void> => {
+        const servico = new ServicoUsuario();
+        const usuario = await servico.ObterUsuarioNoStorage();
+        console.log(usuario);
     }
 
     const modulos = [

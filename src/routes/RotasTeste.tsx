@@ -10,7 +10,7 @@ const Rotas = createStackNavigator();
 
 const RotasTeste: React.FC = () => {
     return (
-        <Rotas.Navigator initialRouteName="Home"
+        <Rotas.Navigator initialRouteName="Login"
             screenOptions={{ headerShown:false, cardStyle: { backgroundColor: '#24292e' } }}>
             <Rotas.Screen name="Login" component={Login} />
             <Rotas.Screen name="Home" component={Home} />
