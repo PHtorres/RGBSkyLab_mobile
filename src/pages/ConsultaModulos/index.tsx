@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import IModulo from '../../models/IModulo';
 import ServicoConsultaModulos from '../../services/ServicoConsultaModulos';
 
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
-import ItemConsulta from './ItemConsulta';
+import ItemConsulta from '../../components/ItemConsulta';
 
 import { Container, AreaResultado, TituloResultado } from './style';
 
 const ConsultaModulos: React.FC = () => {
 
+    const navigation = useNavigation();
     const [modulos, setModulos] = useState([] as IModulo[]);
     const [apelidoCliente, setApelidoCliente] = useState('');
 
@@ -29,6 +32,11 @@ const ConsultaModulos: React.FC = () => {
                 onChangeText={(texto) => setApelidoCliente(texto)} />
 
             <BotaoPrimario habilitado={true} onPress={RealizarBusca}>Buscar</BotaoPrimario>
+            <BotaoPrimario
+                habilitado={true}
+                onPress={() => navigation.navigate('HistoricoConsultas')}>
+                Histórico
+                </BotaoPrimario>
 
             <AreaResultado>
                 <TituloResultado>Resultado:</TituloResultado>

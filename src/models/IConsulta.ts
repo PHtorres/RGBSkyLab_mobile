@@ -1,8 +1,8 @@
 import IModulo from './IModulo';
 
-interface IHistoricoConsulta{
+interface IConsulta{
     cliente:string;
     listaModulos:IModulo[];
 }
 
-export default IHistoricoConsulta;
+export default IConsulta;

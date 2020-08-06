@@ -3,4 +3,4 @@ interface IModulo{
     descricao:string;
 }
 
-export default IItemConsulta;
+export default IModulo;

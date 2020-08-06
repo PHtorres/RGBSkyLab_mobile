@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
-import IItemConsulta from '../../../models/IItemConsulta';
+import IModulo from '../../models/IModulo';
 
 import { Container, TextoItem } from './style';
 
-const ItemConsulta: React.FC<IItemConsulta> = ({codigo, descricao}) => {
+const ItemConsulta: React.FC<IModulo> = ({codigo, descricao}) => {
 
     return (
         <Container>

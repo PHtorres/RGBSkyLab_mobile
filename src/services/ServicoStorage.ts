@@ -1,5 +1,5 @@
 import IUsuario from '../models/IUsuario';
-import IHistoricoConsulta from '../models/IHistoricoConsulta';
+import IConsulta from '../models/IConsulta';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default class ServicoStorage {
@@ -22,18 +22,18 @@ export default class ServicoStorage {
         }
     }
 
-    public async GuardarHistoricoConsultaStorage(historico:IHistoricoConsulta):Promise<void>{
+    public async GuardarHistoricoConsultaStorage(historico:IConsulta):Promise<void>{
         const historicosSalvos = await this.ObterHistoricoConsultaStorage();
         historicosSalvos.unshift(historico);
         const historicoString = JSON.stringify(historicosSalvos);
         await AsyncStorage.setItem('@RGBSKYLAB:HISTORICO:CONSULTA', historicoString);
     }
 
-    public async ObterHistoricoConsultaStorage():Promise<IHistoricoConsulta[]>{
+    public async ObterHistoricoConsultaStorage():Promise<IConsulta[]>{
         const historico = await AsyncStorage.getItem('@RGBSKYLAB:HISTORICO:CONSULTA');
         if(historico){
-            return JSON.parse(historico) as IHistoricoConsulta[];
+            return JSON.parse(historico) as IConsulta[];
         }
-        return [] as IHistoricoConsulta[];
+        return [] as IConsulta[];
     }
 }
