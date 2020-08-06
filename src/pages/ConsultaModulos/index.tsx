@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import IModulo from '../../models/IModulo';
 import ServicoConsultaModulos from '../../services/ServicoConsultaModulos';
 
