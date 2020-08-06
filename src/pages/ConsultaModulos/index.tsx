@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import ServicoUsuario from '../../services/ServicoUsuario';
+import IModulo from '../../models/IModulo';
+import ServicoConsultaModulos from '../../services/ServicoConsultaModulos';
 
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
@@ -13,66 +13,24 @@ import { Container, AreaResultado, TituloResultado } from './style';
 
 const ConsultaModulos: React.FC = () => {
 
-    const navigation = useNavigation();
+    const [modulos, setModulos] = useState([] as IModulo[]);
+    const [apelidoCliente, setApelidoCliente] = useState('');
 
     const RealizarBusca = async (): Promise<void> => {
-        const servico = new ServicoUsuario();
-        const usuario = await servico.ObterUsuarioNoStorage();
-        console.log(usuario);
+        const servicoConsultaModulos = new ServicoConsultaModulos();
+        setModulos(await servicoConsultaModulos.ConsultarModulosCliente(apelidoCliente));
     }
-
-    const modulos = [
-        {
-            codigo: 56,
-            descricao: 'GER3 - CAP'
-        },
-        {
-            codigo: 48,
-            descricao: 'GER3 - Contábil'
-        },
-        {
-            codigo: 36,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 35,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 34,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 33,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 32,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 31,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 30,
-            descricao: 'GER3 - CAV'
-        },
-        {
-            codigo: 29,
-            descricao: 'GER3 - CAV'
-        }
-    ];
 
     return (
         <Container>
             <TituloTela>Consulta módulos</TituloTela>
-            <Input icone="search" placeholder="Digite o apelido do cliente" />
+            <Input
+                icone="search"
+                placeholder="Digite o apelido do cliente"
+                onChangeText={(texto) => setApelidoCliente(texto)} />
+
             <BotaoPrimario habilitado={true} onPress={RealizarBusca}>Buscar</BotaoPrimario>
-            <BotaoPrimario
-                habilitado={true}
-                onPress={() => navigation.goBack()}>Voltar para login
-            </BotaoPrimario>
+
             <AreaResultado>
                 <TituloResultado>Resultado:</TituloResultado>
                 <FlatList

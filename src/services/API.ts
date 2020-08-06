@@ -1,17 +1,22 @@
 import apisauce, { ApisauceInstance } from 'apisauce';
+import ServicoStorage from '../services/ServicoStorage';
 
 class API{
 
     private client:ApisauceInstance;
+    private storage:ServicoStorage;
     
     constructor(){
         this.client = apisauce.create({
             baseURL:'http://rgbsys.dyndns.info/apiautoprodautenticada/api/'
-        })
+        });
+
+        this.storage = new ServicoStorage();
     }
 
     private async PegarToken():Promise<void>{
-        this.client.setHeader('Authorization', `Bearer 5465465465456465sdfsdfdsfsdf`);
+        const usuario = await this.storage.ObterUsuarioNoStorage();
+        this.client.setHeader('Authorization', `Bearer ${usuario.token}`);
     }
 
     public async FazerGet<T>(url:string, parametros:string):Promise<T | undefined>{

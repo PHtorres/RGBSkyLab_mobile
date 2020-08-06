@@ -1,4 +1,4 @@
-interface IItemConsulta{
+interface IModulo{
     codigo:number;
     descricao:string;
 }
