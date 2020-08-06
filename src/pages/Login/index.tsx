@@ -53,16 +53,6 @@ const Login: React.FC = () => {
 
                 <BotaoLink onPress={AbrirTelaRecuperarSenha}>Esqueci minha senha</BotaoLink>
                 <BotaoPrimario habilitado={true} onPress={TentarLogin}>Entrar</BotaoPrimario>
-                <BotaoPrimario
-                    habilitado={true}
-                    onPress={() => navigation.navigate('ConsultaModulos')}>
-                    Ir para tela consulta
-                    </BotaoPrimario>
-                <BotaoPrimario
-                    habilitado={true}
-                    onPress={() => navigation.navigate('PerfilCliente')}>
-                    Ir para tela perfil cliente
-                    </BotaoPrimario>
             </AreaForm>
             <Rodape>
                 <InfoVersao />
