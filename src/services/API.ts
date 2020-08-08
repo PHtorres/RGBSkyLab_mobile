@@ -23,6 +23,7 @@ class API{
 
         await this.PegarToken();
         const consulta = await this.client.get<T>(url, parametros);
+        console.log(consulta);
         return consulta.data;
 
     }

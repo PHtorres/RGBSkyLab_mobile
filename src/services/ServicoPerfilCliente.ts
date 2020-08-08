@@ -13,7 +13,7 @@ export default class ServicoPerfilCliente{
 
         const resposta = await this.api
         .FazerGet<IPerfilCliente>(`Contato/ObterContato/${apelidoCliente}`, '');
-
+        console.log(resposta);
         if(resposta){
             return resposta;
         }

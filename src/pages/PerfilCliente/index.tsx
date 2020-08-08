@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
 
+import IPerfilCliente from '../../models/IPerfilCliente';
 import ServicoPerfilCliente from '../../services/ServicoPerfilCliente';
 
 import { Container, AreaResultadoPerfil, TextoResultado, TextoTituloResultado } from './style';
 
 const PerfilCliente: React.FC = () => {
 
-    const BuscarPerfilCliente = async (): Promise<void> => {
+    const [resultadoPerfil, setResultadoPerfil] = useState({ data: {} } as IPerfilCliente);
+    const [apelidoCliente, setApelidoCliente] = useState('');
 
+    const BuscarPerfilCliente = async (): Promise<void> => {
+        const servico = new ServicoPerfilCliente();
+        setResultadoPerfil(await servico.ObterPerfilCliente(apelidoCliente));
     }
 
     return (
         <Container>
             <TituloTela>Perfil do cliente</TituloTela>
-            <Input icone="search" placeholder="Digite o apelido do cliente" />
+            <Input
+                icone="search"
+                placeholder="Digite o apelido do cliente"
+                onChangeText={(texto) => setApelidoCliente(texto)} />
             <BotaoPrimario habilitado onPress={BuscarPerfilCliente}>Buscar perfil</BotaoPrimario>
-            <TextoTituloResultado>Resultado:</TextoTituloResultado>
-            <AreaResultadoPerfil>
-                <TextoResultado>CRESCER</TextoResultado>
-                <TextoResultado>Número de usuários: 38</TextoResultado>
-                <TextoResultado>Fatura Risco: Sim</TextoResultado>
-            </AreaResultadoPerfil>
+            <TextoTituloResultado>Resultado: {resultadoPerfil.data?.listaErros[0]}</TextoTituloResultado>
+            {resultadoPerfil.data.apelido &&
+                <AreaResultadoPerfil>
+                    <TextoResultado>{resultadoPerfil.data.apelido}</TextoResultado>
+                    <TextoResultado>Número de usuários: {resultadoPerfil.data.numeroUsuarios}</TextoResultado>
+                    <TextoResultado>Fatura Risco: {resultadoPerfil.data.faturaRisco ? 'Sim' : 'Não'}</TextoResultado>
+                </AreaResultadoPerfil>
+            }
         </Container>
     );
 }
