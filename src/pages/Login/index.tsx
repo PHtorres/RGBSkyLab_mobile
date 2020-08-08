@@ -30,7 +30,7 @@ const Login: React.FC = () => {
     }
 
     const AbrirTelaRecuperarSenha = (): void => {
-        Alert.alert('FODA-SE');
+        navigation.navigate('RecuperarSenha');
     }
 
     return (
