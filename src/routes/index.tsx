@@ -18,8 +18,7 @@ const Rotas: React.FC = () => {
     if(usuario.logado)
     {
         return <RotasPrivadas/>
-    }
-    
+    } 
     else
     {
         return <RotasPublicas/>
