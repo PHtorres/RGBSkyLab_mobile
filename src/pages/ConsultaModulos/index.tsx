@@ -32,18 +32,6 @@ const ConsultaModulos: React.FC = () => {
                 onChangeText={(texto) => setApelidoCliente(texto)} />
 
             <BotaoPrimario habilitado={true} onPress={RealizarBusca}>Buscar</BotaoPrimario>
-            <BotaoPrimario
-                habilitado={true}
-                onPress={() => navigation.navigate('HistoricoConsultas')}>
-                Histórico
-                </BotaoPrimario>
-
-            <BotaoPrimario
-                habilitado={true}
-                onPress={() => navigation.navigate('PerfilCliente')}>
-                Perfil Cliente
-                </BotaoPrimario>
-
             <AreaResultado>
                 <TituloResultado>Resultado:</TituloResultado>
                 <FlatList
