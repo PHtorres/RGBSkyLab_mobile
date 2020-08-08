@@ -25,7 +25,7 @@ const Login: React.FC = () => {
         const resultado = await FazerLogin(usuario, senha);
 
         if (!resultado.logado) {
-            Alert.alert(resultado.listaErros[0]);
+            Alert.alert('Ops!', resultado.listaErros[0]);
         }
     }
 
