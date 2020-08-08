@@ -1,20 +1,29 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
 import RotasPublicas from './RotasPublicas';
 import RotasPrivadas from './RotasPrivadas';
+import TelaCarregando from '../components/TelaCarregando';
 
 import { useUsuario } from '../hooks/HUsuario';
 
 const Rotas: React.FC = () => {
 
-    const { usuario } = useUsuario();
+    const { usuario, carregando } = useUsuario();
 
-    return (
-        <>
-            {usuario.logado ? <RotasPrivadas /> : <RotasPublicas />}
-        </>
-    )
+    if (carregando) 
+    {
+        return <TelaCarregando />
+    }
+
+    if(usuario.logado)
+    {
+        return <RotasPrivadas/>
+    }
+    
+    else
+    {
+        return <RotasPublicas/>
+    }
 }
 
 export default Rotas;

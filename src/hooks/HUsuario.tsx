@@ -7,6 +7,7 @@ interface IUsuarioContexto {
     usuario: IUsuario;
     FazerLogin(usuario: string, senha: string): Promise<IUsuario>;
     SairUsuario(): Promise<void>;
+    carregando:boolean;
 }
 
 const UsuarioContexto = createContext<IUsuarioContexto>({} as IUsuarioContexto);
@@ -16,18 +17,20 @@ export const UsuarioProvider: React.FC = ({ children }) => {
     const servicoUsuario = new ServicoUsuario();
     const storage = new ServicoStorage();
 
+    const [dadosUsuario, setDadosUsuario] = useState({} as IUsuario);
+    const [carregando, setCarregando] = useState(true);
+
     useEffect(()=>{
         PegarDadosUsuario();
     }, []);
 
 
     const PegarDadosUsuario = async ():Promise<void> => {
+        debugger
         const usuarioStorage = await storage.ObterUsuarioNoStorage();
         setDadosUsuario(usuarioStorage);
+        setCarregando(false);
     }
-
-
-    const [dadosUsuario, setDadosUsuario] = useState({} as IUsuario);
 
     const FazerLogin = useCallback(async (usuario: string, senha: string): Promise<IUsuario> => {
     
@@ -48,7 +51,7 @@ export const UsuarioProvider: React.FC = ({ children }) => {
     }, []);
 
     return (
-        <UsuarioContexto.Provider value={{ usuario: dadosUsuario, FazerLogin, SairUsuario }}>
+        <UsuarioContexto.Provider value={{ usuario: dadosUsuario, FazerLogin, SairUsuario, carregando }}>
             {children}
         </UsuarioContexto.Provider>
     )
