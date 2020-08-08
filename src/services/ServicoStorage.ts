@@ -24,8 +24,9 @@ export default class ServicoStorage {
 
     public async GuardarHistoricoConsultaStorage(historico:IConsulta):Promise<void>{
         const historicosSalvos = await this.ObterHistoricoConsultaStorage();
-        historicosSalvos.unshift(historico);
-        const historicoString = JSON.stringify(historicosSalvos);
+        const historicosSalvosSemRepeticao = historicosSalvos.filter(item => item.cliente !== historico.cliente);
+        historicosSalvosSemRepeticao.unshift(historico);
+        const historicoString = JSON.stringify(historicosSalvosSemRepeticao);
         await AsyncStorage.setItem('@RGBSKYLAB:HISTORICO:CONSULTA', historicoString);
     }
 

@@ -20,7 +20,7 @@ export default class ServicoConsultaModulos{
         if(resposta){
             
             await this.storage.GuardarHistoricoConsultaStorage({
-                cliente:apelidoCliente,
+                cliente:apelidoCliente.toUpperCase(),
                 listaModulos:resposta
             });
 
