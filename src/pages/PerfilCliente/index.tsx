@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Keyboard} from 'react-native';
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
@@ -16,6 +17,7 @@ const PerfilCliente: React.FC = () => {
     const BuscarPerfilCliente = async (): Promise<void> => {
         const servico = new ServicoPerfilCliente();
         setResultadoPerfil(await servico.ObterPerfilCliente(apelidoCliente));
+        Keyboard.dismiss();
     }
 
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps, Text } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 
 import { Container, TextoBotao } from './style';
 

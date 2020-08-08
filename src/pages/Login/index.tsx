@@ -48,7 +48,9 @@ const Login: React.FC = () => {
                     placeholder="Senha"
                     secureTextEntry
                     value={senha}
-                    onChangeText={(texto) => setSenha(texto)} />
+                    onChangeText={(texto) => setSenha(texto)} 
+                    returnKeyType="send"
+                    onSubmitEditing={TentarLogin}/>
 
                 <BotaoLink onPress={AbrirTelaRecuperarSenha}>Esqueci minha senha</BotaoLink>
                 <BotaoPrimario habilitado={true} onPress={TentarLogin}>Entrar</BotaoPrimario>

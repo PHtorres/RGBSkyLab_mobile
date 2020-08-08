@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import IModulo from '../../models/IModulo';
@@ -21,6 +21,7 @@ const ConsultaModulos: React.FC = () => {
     const RealizarBusca = async (): Promise<void> => {
         const servicoConsultaModulos = new ServicoConsultaModulos();
         setModulos(await servicoConsultaModulos.ConsultarModulosCliente(apelidoCliente));
+        Keyboard.dismiss();
     }
 
     return (
