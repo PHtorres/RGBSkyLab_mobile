@@ -38,6 +38,12 @@ const ConsultaModulos: React.FC = () => {
                 Histórico
                 </BotaoPrimario>
 
+            <BotaoPrimario
+                habilitado={true}
+                onPress={() => navigation.navigate('PerfilCliente')}>
+                Perfil Cliente
+                </BotaoPrimario>
+
             <AreaResultado>
                 <TituloResultado>Resultado:</TituloResultado>
                 <FlatList
