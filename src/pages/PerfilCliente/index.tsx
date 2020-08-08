@@ -26,7 +26,9 @@ const PerfilCliente: React.FC = () => {
                 placeholder="Digite o apelido do cliente"
                 onChangeText={(texto) => setApelidoCliente(texto)} />
             <BotaoPrimario habilitado onPress={BuscarPerfilCliente}>Buscar perfil</BotaoPrimario>
-            <TextoTituloResultado>Resultado: {resultadoPerfil.data?.listaErros[0]}</TextoTituloResultado>
+            <TextoTituloResultado>Resultado: {resultadoPerfil.data?.listaErros ?
+                resultadoPerfil.data?.listaErros[0] : ''}
+            </TextoTituloResultado>
             {resultadoPerfil.data.apelido &&
                 <AreaResultadoPerfil>
                     <TextoResultado>{resultadoPerfil.data.apelido}</TextoResultado>
