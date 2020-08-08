@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {useUsuario} from '../../hooks/HUsuario';
 
 import TituloTela from '../../components/TituloTela';
 import LogoRGBSkyLab from '../../components/LogoRGBSkyLab';
@@ -9,24 +10,22 @@ import BotaoPrimario from '../../components/BotaoPrimario';
 import BotaoLink from '../../components/BotaoLink';
 import InfoVersao from '../../components/InfoVersao';
 
-import ServicoUsuario from '../../services/ServicoUsuario';
 
 import { Container, AreaForm, Rodape } from './style';
 
 const Login: React.FC = () => {
 
+    const {FazerLogin} = useUsuario();
     const navigation = useNavigation();
     const [usuario, setUsuario] = useState('');
     const [senha, setSenha] = useState('');
 
     const TentarLogin = async (): Promise<void> => {
+        
+        const resultado = await FazerLogin(usuario, senha);
 
-        const servico = new ServicoUsuario();
-        const objUsuario = await servico.LogarUsuario(usuario, senha);
-        if (objUsuario.logado) {
-            navigation.navigate('ConsultaModulos');
-        } else {
-            Alert.alert(objUsuario.listaErros[0]);
+        if (!resultado.logado) {
+            Alert.alert(resultado.listaErros[0]);
         }
     }
 
