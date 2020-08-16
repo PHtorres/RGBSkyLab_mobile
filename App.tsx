@@ -1,10 +1,12 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
   StatusBar,
 } from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen'
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -14,6 +16,9 @@ import Rotas from './src/routes/';
 
 
 function App() {
+
+  useEffect(() => { SplashScreen.hide() }, []);
+
   return (
     <NavigationContainer>
       <StatusBar barStyle="dark-content" backgroundColor="#7159c1" />
