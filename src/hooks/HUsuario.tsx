@@ -26,7 +26,6 @@ export const UsuarioProvider: React.FC = ({ children }) => {
 
 
     const PegarDadosUsuario = async ():Promise<void> => {
-        debugger
         const usuarioStorage = await storage.ObterUsuarioNoStorage();
         setDadosUsuario(usuarioStorage);
         setCarregando(false);

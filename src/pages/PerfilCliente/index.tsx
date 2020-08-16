@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Keyboard} from 'react-native';
+import { Keyboard } from 'react-native';
 import TituloTela from '../../components/TituloTela';
 import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
@@ -27,10 +27,13 @@ const PerfilCliente: React.FC = () => {
                 icone="search"
                 placeholder="Digite o apelido do cliente"
                 onChangeText={(texto) => setApelidoCliente(texto)} />
+
             <BotaoPrimario habilitado onPress={BuscarPerfilCliente}>Buscar perfil</BotaoPrimario>
-            <TextoTituloResultado>Resultado: {resultadoPerfil.data?.listaErros ?
-                resultadoPerfil.data?.listaErros[0] : ''}
+
+            <TextoTituloResultado>
+                Resultado: {resultadoPerfil.data?.listaErros ? resultadoPerfil.data?.listaErros[0] : ''}
             </TextoTituloResultado>
+
             {resultadoPerfil.data.apelido &&
                 <AreaResultadoPerfil>
                     <TextoResultado>{resultadoPerfil.data.apelido}</TextoResultado>
