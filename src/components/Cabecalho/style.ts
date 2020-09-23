@@ -12,8 +12,21 @@ margin: 10px 5px 10px 0px;
 
 export const UsuarioInfo = styled.View`
 
+flex-direction:row;
 justify-content:space-between;
-align-items:flex-end;
+align-items:center;
+
+`;
+
+export const AvatarUsuario = styled.View`
+
+width:50px;
+height:50px;
+border-radius:25px;
+background: #2f363d;
+justify-content:center;
+align-items:center;
+margin-right:10px;
 
 `;
 
@@ -30,15 +43,7 @@ color:#fff;
 
 `;
 
-
-export const BotaoSair = styled.TouchableOpacity`
-
-margin: 5px 0 5px 0;
-
-`;
-
-
-export const TextoBotaoSair = styled(Texto)`
+export const TextoAvatarUsuario = styled(Texto)`
 
 color:#7159c1;
 

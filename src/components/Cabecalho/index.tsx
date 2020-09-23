@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import LogoRGBSkyLab from '../LogoRGBSkyLab';
 
-import { Container, BotaoSair, UsuarioInfo, TextoUsuarioInfo, TextoBotaoSair } from './style';
+import { Container, UsuarioInfo, AvatarUsuario, TextoAvatarUsuario, TextoUsuarioInfo, } from './style';
 
 const Cabecalho: React.FC = () => {
 
@@ -19,10 +19,12 @@ const Cabecalho: React.FC = () => {
                 <LogoRGBSkyLab />
             </TouchableOpacity>
             <UsuarioInfo>
-                <TextoUsuarioInfo>{`Bem vindo, ${usuario.usuario}`}</TextoUsuarioInfo>
-                <BotaoSair onPress={SairUsuario}>
-                    <TextoBotaoSair>Sair</TextoBotaoSair>
-                </BotaoSair>
+                <AvatarUsuario>
+                    <TextoAvatarUsuario>
+                        {usuario.usuario.substring(0, 2)}
+                    </TextoAvatarUsuario>
+                </AvatarUsuario>
+                <TextoUsuarioInfo>{usuario.usuario}</TextoUsuarioInfo>
             </UsuarioInfo>
         </Container>
 

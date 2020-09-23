@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import {useUsuario} from '../../hooks/HUsuario';
 import TituloTela from '../../components/TituloTela';
 
 import { Container, Menu, ItemMenu, TextoItemMenu } from './style';
@@ -8,6 +8,7 @@ import { Container, Menu, ItemMenu, TextoItemMenu } from './style';
 const Home: React.FC = () => {
 
     const navigation = useNavigation();
+    const {SairUsuario} = useUsuario();
 
     return (
         <Container>
@@ -21,6 +22,9 @@ const Home: React.FC = () => {
                 </ItemMenu>
                 <ItemMenu onPress={() => navigation.navigate('PerfilCliente')}>
                     <TextoItemMenu>Perfil do cliente</TextoItemMenu>
+                </ItemMenu>
+                <ItemMenu onPress={SairUsuario}>
+                    <TextoItemMenu>Sair</TextoItemMenu>
                 </ItemMenu>
             </Menu>
         </Container>
