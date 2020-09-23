@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Keyboard } from 'react-native';
+import { Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useUsuario } from '../../hooks/HUsuario';
 
@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import BotaoPrimario from '../../components/BotaoPrimario';
 import BotaoLink from '../../components/BotaoLink';
 import InfoVersao from '../../components/InfoVersao';
-import Alerta from '../../components/Alerta';
+import {useAlerta} from '../../hooks/HAlerta';
 
 import { Container, AreaForm, Rodape } from './style';
 
@@ -19,8 +19,8 @@ const Login: React.FC = () => {
     const navigation = useNavigation();
     const [usuario, setUsuario] = useState('');
     const [senha, setSenha] = useState('');
-    const [mensagem, setMensagem] = useState('');
     const [textoBotao, setTextoBotao] = useState('Entrar');
+    const {mostrarMensagem} = useAlerta();
 
     const TentarLogin = async (): Promise<void> => {
         Keyboard.dismiss();
@@ -28,8 +28,9 @@ const Login: React.FC = () => {
         const resultado = await FazerLogin(usuario, senha);
 
         if (!resultado.logado) {
-            // Alert.alert('Ops!', resultado.listaErros[0]);
-            setMensagem(resultado.listaErros[0]);
+            mostrarMensagem('Atenção!', resultado.listaErros);
+        }else{
+            mostrarMensagem(`Bem vindo, ${resultado.usuario}`, []);
         }
 
         setTextoBotao('Entrar');
@@ -64,11 +65,6 @@ const Login: React.FC = () => {
             <Rodape>
                 <InfoVersao />
             </Rodape>
-            <Alerta
-                titulo="Atenção!"
-                mensagem={mensagem}
-                mostrarAlerta={mensagem.length > 0}
-                fecharAlerta={() => setMensagem('')} />
         </Container>
     );
 }

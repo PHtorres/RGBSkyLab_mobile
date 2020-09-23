@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { UsuarioProvider } from './HUsuario';
+import { AlertaContainer } from './HAlerta';
 
 const AppProvider: React.FC = ({ children }) => {
 
     return (
-        <UsuarioProvider>
-            {children}
-        </UsuarioProvider>
+        <AlertaContainer>
+            <UsuarioProvider>
+                {children}
+            </UsuarioProvider>
+        </AlertaContainer>
     );
 
 }
