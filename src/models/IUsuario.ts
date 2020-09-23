@@ -4,6 +4,7 @@ interface IUsuario {
     token: string;
     logado: boolean;
     listaErros:string[];
+    ultimoLogin:Date;
 }
 
 export default IUsuario;

@@ -26,6 +26,7 @@ export default class ServicoUsuario {
             if (Usuarioresposta.listaErros.length === 0) 
             {
                 Usuarioresposta.logado = true;
+                Usuarioresposta.ultimoLogin = new Date();
                 await this.storage.GuardarUsuarioNoStorage(Usuarioresposta);
             }
 

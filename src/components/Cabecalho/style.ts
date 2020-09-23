@@ -10,7 +10,7 @@ margin: 10px 5px 10px 0px;
 `;
 
 
-export const UsuarioInfo = styled.View`
+export const UsuarioInfo = styled.TouchableOpacity`
 
 flex-direction:row;
 justify-content:space-between;
